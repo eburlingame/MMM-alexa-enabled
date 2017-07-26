@@ -12,27 +12,28 @@ Module.register("MMM-alexa-enabled", {
 	},
 
 	handleMessage: function(message) {
+		var self = this;
         if (message['type'] == "ActivateModule") {
          	MM.getModules().withClass(message['module_name']).exceptModule(this).enumerate(function(module) {
-                module.show(this.config.fadeTime);
+                module.show(self.config.fadeTime);
             });
         }
         else if (message['type'] == "DeactivateModule") {
         	console.log("hiding");
         	MM.getModules().withClass(message['module_name']).exceptModule(this).enumerate(function(module) {
         		console.log("Hiding " + module.name);
-                module.hide(this.config.fadeTime);
+                module.hide(self.config.fadeTime);
             });
         }
         else if (message['type'] == "ActivateAllModules") {
             MM.getModules().exceptModule(this).enumerate(function(module) {
-                module.show(this.config.fadeTime, function() {} );
+                module.show(self.config.fadeTime);
             });
         }
         else if (message['type'] == "DeactivateAllModules") {
         	console.log("hiding all");
             MM.getModules().exceptModule(this).enumerate(function(module) {
-                module.hide(this.config.fadeTime);
+                module.hide(self.config.fadeTime);
             });
         }
 	},

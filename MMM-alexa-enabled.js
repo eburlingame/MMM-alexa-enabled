@@ -2,12 +2,12 @@ Module.register("MMM-alexa-enabled", {
 
 	defaults: {
 	    sqs_url: "[Required]",
-	    fadeTime: 1000, // In ms
+	    fade_time: 1000, // In ms
 	},
 
 	start: function () {
 		console.log("Starting MMM-alexa-enabled");
-		console.log(this.config.fadeTime);
+		console.log(this.config.sqs_url);
 		this.sendSocketNotification("START_LISTENER", this.config);	
 	},
 
@@ -31,7 +31,6 @@ Module.register("MMM-alexa-enabled", {
             });
         }
         else if (message['type'] == "DeactivateAllModules") {
-        	console.log("hiding all");
             MM.getModules().exceptModule(this).enumerate(function(module) {
                 module.hide(self.config.fadeTime);
             });

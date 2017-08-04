@@ -35,6 +35,12 @@ Module.register("MMM-alexa-enabled", {
                 module.hide(self.config.fade_time);
             });
         }
+        else if (message['type'] == "TurnOn") {
+            this.sendSocketNotification("TURN_ON");
+        }
+        else if (message['type'] == "TurnOff") {
+            this.sendSocketNotification("TURN_OFF");
+        }
 	},
 
 	socketNotificationReceived: function(notification, payload) {
